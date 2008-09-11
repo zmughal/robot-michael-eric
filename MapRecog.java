@@ -1,22 +1,30 @@
+import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 
 class MapRecog
 {
-	private ArrayList<Maze> mazes;
+	private Maze maze1;
+	private Maze maze2;
 	
 	public MapRecog()
 	{
-		mazes = new ArrayList<Maze>();
+		maze1 = null;
+		maze2 = null;
 	}
 	
-	public void setMap(Maze m, int x)
+	public void setMaze(Maze m, int x)
 	{
-		mazes.remove(x);
-		mazes.add(x,m);
+		if(x == 1)
+			maze1 = m;
+		if(x == 2)
+			maze2 = m;
 	}
 	
 	public boolean attemptMatch()
 	{
+		if(maze1 == null || maze2 == null)
+			return false;
+		
 		
 		
 		return false;

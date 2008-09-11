@@ -17,11 +17,14 @@ public class Bot
 	
 	public Bot()
 	{
-//		comm = new CommCenter("localhost","Bob");
+		comm = new CommCenter("localhost","Bob");
 		comm.registerRobot(1);
 		
 		maze = new Maze(this);
-		
+		maze.loadMap("testmap.rtss");
+		mv = new MazeViewer(maze);
+		maze = new Maze(this);
+		maze.loadMap("testmap2.rtss");
 		mv = new MazeViewer(maze);
 		
 		path = new Pathfinder(this,maze);
