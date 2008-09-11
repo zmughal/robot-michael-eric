@@ -11,10 +11,20 @@ public class Bot
 	}
 	
 	private Pathfinder path;
+	private CommCenter comm;
+	private Maze maze;
+	private MazeViewer mv;
 	
 	public Bot()
 	{
-		path = new Pathfinder();
+		comm = new CommCenter("localhost","Bob");
+		comm.registerRobot(1);
+		out.println("hi");
+		maze = new Maze(this);
+		
+		mv = new MazeViewer(maze);
+		
+		path = new Pathfinder(this,maze);
 		path.start();
 	}
 }
