@@ -1,0 +1,7 @@
+class MapRecog
+{
+	public MapRecog()
+	{
+		
+	}
+}
