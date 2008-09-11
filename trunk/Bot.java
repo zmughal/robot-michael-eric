@@ -11,6 +11,7 @@ public class Bot
 	}
 	
 	private char world[][];
+	private Pathfinder path;
 	
 	/*
 		Characters used in the map will be as follows:
@@ -28,5 +29,10 @@ public class Bot
 			{
 				world[r][c] = 'E';
 			}
+		
+		path = new Pathfinder();
+		path.start();
+		
+		while(true){}
 	}
 }
