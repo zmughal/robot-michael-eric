@@ -1,4 +1,4 @@
-class Map
+class Maze
 {
 	private char map[][];
 	/*
@@ -8,9 +8,9 @@ class Map
 		  'B': a possible beacon location
 	*/
 	
-	public Map()
+	public Maze()
 	{
-		map = new char[140][280];
+		map = new char[280][560];
 		
 		for(int r = 0; r < 140; r++)
 			for(int c = 0; c < 280; c++)
