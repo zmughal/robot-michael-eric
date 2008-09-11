@@ -2,22 +2,15 @@ import org.simpleframework.xml.*;
 import org.simpleframework.xml.load.*;
 
 
-@Root(name="Reply")
+@Root(name="Reply",strict=false)
 class RegisterReply
 {
 	@Attribute(name="Status",required=true)
 		private String status;
-	
-	public String getStatus(){
-		return status;
-	}
-	
+
 	@Element(name="Parameters",required=false)
-	//ReplyParams params;
 	private String Paramaters;
 		
-//	class ReplyParams
-//	{
 		@Attribute(name="SimTime",required=false)
 			private int SimTime;
 		@Attribute(name="CycleTime",required=false)
@@ -51,12 +44,72 @@ class RegisterReply
 		public double getMotorNoise(){
 			return MotorNoise;
 		}
-//	}
-	public String toString()
+		
+	public String getStatus(){
+		return status;
+	}
+}
+
+@Root(name="Actions",strict=false)
+class SendActions
+{
+	SendActions()
 	{
-		String temp = new String();
-		String nl = "\n";
-		temp +="Status: "+status+nl;
-		return temp;
+		reqs = new SensorRequests();
+	}
+	
+	@Attribute(name="LeftMotor",required=false)
+		private double LeftMotor;
+	@Attribute(name="RightMotor",required=false)
+		private double RightMotor;
+	@Attribute(name="EndLed",required=false)
+		private String EndLed;
+		
+	@Element(name="SensorRequests",required=false)
+	private SensorRequests reqs;
+	
+	@Element(name="Say",required=false,data=true)
+		private String sayData;
+	
+	class SensorRequests
+	{
+		@Attribute(name="IRSensor0",required=false)
+			private String sens0;
+		@Attribute(name="IRSensor1",required=false)
+			private String sens1;
+		@Attribute(name="IRSensor2",required=false)
+			private String sens2;
+		@Attribute(name="IRSensor3",required=false)
+			private String sens3;
+		@Attribute(name="Beacon0",required=false)
+			private String Beacon0;
+		@Attribute(name="Ground",required=false)
+			private String Ground;
+		@Attribute(name="Compass",required=false)
+			private String Compass;
+		
+		
+	}
+	
+	public void requestSensors(boolean i0,boolean i1,boolean i2,boolean i3,boolean comp,boolean beac,boolean ground)
+	{
+		if(i0)
+			reqs.sens0="Yes";
+		if(i1)
+			reqs.sens1="Yes";
+		if(i2)
+			reqs.sens2="Yes";
+		if(i3)
+			reqs.sens3="Yes";
+		if(comp)
+			reqs.Compass="Yes";
+		if(beac)
+			reqs.Beacon0="Yes";
+		if(ground)
+			reqs.Ground="Yes";
+	}
+	
+	public void setMessage(String msg){
+		sayData = msg;
 	}
 }
