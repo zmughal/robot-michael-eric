@@ -19,7 +19,7 @@ public class Bot
 	{
 //		comm = new CommCenter("localhost","Bob");
 		comm.registerRobot(1);
-		out.println("hi");
+		
 		maze = new Maze(this);
 		
 		mv = new MazeViewer(maze);
