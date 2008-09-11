@@ -29,5 +29,4 @@ public class Bot
 				world[r][c] = 'E';
 			}
 	}
-	// michael changed this.
 }
