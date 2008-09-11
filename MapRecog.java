@@ -4,4 +4,9 @@ class MapRecog
 	{
 		
 	}
+	
+	public void addMap(Maze m)
+	{
+		
+	}
 }
