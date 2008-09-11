@@ -10,7 +10,7 @@ class MazeViewer extends JFrame
 	{
 		setMaze(m);
 		setSize(1160,580);
-		setUndecorated(true);
+//		setUndecorated(true);
 		setLocationRelativeTo(null);
 		add(new MazePanel());
 		setVisible(true);
@@ -26,20 +26,15 @@ class MazeViewer extends JFrame
 		public MazePanel()
 		{
 			setPreferredSize(new Dimension(1160,580));
-			setBackground(Color.GREEN);
 		}
 		
 		public void paintComponent(Graphics g)
 		{
-			for(int r = 0; r < 280; r++)
-				for(int c = 0; c < 560; c++)
-				{
-					if(maze.getValue(r,c) == 'O')
-						g.setColor(Color.BLACK);
-					else
-						g.setColor(Color.GREEN);
-					g.fillRect(c*2,r*2,2,2);
-				}
+			g.setColor(Color.GREEN);
+			g.fillRect(0,0,1160,580);
+			g.setColor(Color.BLACK);
+			for(Point p : maze.getMaze())
+				g.fillRect(p.x*2,p.y*2,2,2);
 		}
 	}
 }
