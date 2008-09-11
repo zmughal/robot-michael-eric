@@ -24,7 +24,7 @@ class CommCenter extends Thread
 	{
 		CommCenter center = new CommCenter("localhost","bob");
 		
-		center.registerRobot();
+		center.registerRobot(1);
 	}
 	 
 	
@@ -60,10 +60,10 @@ class CommCenter extends Thread
 		System.out.println(socket);
 	}
 	
-	public boolean registerRobot()
+	public boolean registerRobot(int pos)
 	{
-		// 1 is the position
-		String ini = "<Robot Id=\"" + 1 + "\""+" Name=\"" + robotName + "\" />";
+		// pos is the position
+		String ini = "<Robot Id=\"" + pos + "\""+" Name=\"" + robotName + "\" />";
 		
 		out.println(ini);
 		
