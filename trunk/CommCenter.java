@@ -8,10 +8,15 @@ import java.net.InetSocketAddress;
 import java.net.InetAddress;
 
 import java.io.IOException;
+import java.io.ByteArrayInputStream;
+import java.io.BufferedInputStream;
+
+import java.util.Scanner;
 
 import static java.lang.System.*;
 
-
+import org.simpleframework.xml.*;
+import org.simpleframework.xml.load.*;
 
 
 class CommCenter extends Thread
@@ -62,7 +67,7 @@ class CommCenter extends Thread
 		System.out.println(socket);
 	}
 	
-	public boolean registerRobot(int pos) // port = 6000 to register
+	public RegisterReply registerRobot(int pos) // port = 6000 to register
 	{
 		String ini = "<Robot Id=\"" + pos + "\""+" Name=\"" + robotName + "\" />";
 				
@@ -78,20 +83,36 @@ class CommCenter extends Thread
 		{
 			exc.printStackTrace();
 		}
-	
+		RegisterReply replyData=null;
 		// server will return port to be used in future
 		byte[] bufread = new byte[1024];
         packet = new DatagramPacket(bufread, bufread.length);
 		try
 		{
 			socket.receive(packet);
+			setPort(packet.getPort());
+			
+			BufferedInputStream inStream = new BufferedInputStream(new ByteArrayInputStream(packet.getData()));
+			
+			replyData = new RegisterReply();
+			
+			Serializer ser = new Persister();
+			ser.read(replyData,inStream);
+			//out.println(replyData);
 		}
 		catch(IOException exc)
 		{
 			exc.printStackTrace();
 		}
+		catch(Exception exc)
+		{
+			exc.printStackTrace();
+		}
 		
-		return true;
+		return (replyData.getStatus().equals("Refused")?null:replyData);
+	}
+	protected void setPort(int port){
+		this.port = port;
 	}
 	
 	public int getPort(){
