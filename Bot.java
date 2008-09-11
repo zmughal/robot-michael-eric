@@ -18,7 +18,7 @@ public class Bot
 		  'O': an obsticle
 		  'B': a possible beacon location
 	*/
-	a
+	
 	public Bot()
 	{
 		world = new char[140][280];
