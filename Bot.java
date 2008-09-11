@@ -1,6 +1,6 @@
-import java.net.*;
 import static java.lang.System.*;
 import java.util.*;
+import java.net.*;
 import java.io.*;
 
 public class Bot
@@ -32,7 +32,5 @@ public class Bot
 		
 		path = new Pathfinder();
 		path.start();
-		
-		while(true){}
 	}
 }
