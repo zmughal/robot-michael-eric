@@ -11,13 +11,14 @@ public class Bot
 	}
 	
 	private char world[][];
+	
 	/*
 		Characters used in the map will be as follows:
 		  'E': an empty or unknown cell
 		  'O': an obsticle
 		  'B': a possible beacon location
 	*/
-	
+	a
 	public Bot()
 	{
 		world = new char[140][280];
