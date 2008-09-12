@@ -113,3 +113,30 @@ class SendActions
 		sayData = msg;
 	}
 }
+
+@Root(name="Measures",strict=false)
+class Measures
+{
+	@Attribute(name="Time")
+		private int time;
+		
+		
+	@Element(name="Sensors")
+		private Sensors sensors;
+		
+	
+	class Sensors
+	{
+		@Attribute(name="Compass",required=false)
+			private double angle;
+		@Attribute(name="Collision")
+			private String collision;
+		@Attribute(name="Ground")
+			private int ground;
+			
+		@Element(name="BeaconSensor",required=false)
+			private Beacon beacon;
+			
+		@ElementList()
+	}
+}
