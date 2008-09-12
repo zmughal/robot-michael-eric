@@ -35,6 +35,17 @@ class CommCenter extends Thread
 		CommCenter center = new CommCenter("localhost","bob",6000);
 		
 		center.registerRobot(1);
+		
+		while(true)
+		{
+			try
+			{
+				Measures m = center.receive();
+				out.println(m.getTime());
+				
+			}
+			catch(Exception exc){}
+		}
 	}
 	
 	public Measures receive()
@@ -49,9 +60,10 @@ class CommCenter extends Thread
 			BufferedInputStream inStream = new BufferedInputStream(new ByteArrayInputStream(packet.getData()));
 			
 			Measures m = new Measures();
-			ser.read(m,inStream);
+			m = ser.read(Measures.class,inStream);
 			return m;
 		}
+		catch(IOException exc){exc.printStackTrace();}
 		catch(Exception exc){exc.printStackTrace();}
 		return null;
 	}

@@ -118,11 +118,15 @@ class SendActions
 @Root(name="Measures",strict=false)
 class Measures
 {
-	@Attribute(name="Time")
-		private int time;
+	Measures()
+		{
+			sensors = new Sensors();
+		}
+	
+	@Attribute(name="Time",required=false)
+		private int time;		
 		
-		
-	@Element(name="Sensors")
+	@Element(name="Sensors",required=false)
 		private Sensors sensors;
 	
 	@Element(name="Leds",required = false)
@@ -138,11 +142,18 @@ class Measures
 		
 	class Sensors
 	{
+		Sensors()
+		{
+			gps = new GPS();
+			msg = new Message();
+			beacon = new Beacon();
+		}
+		
 		@Attribute(name="Compass",required=false)
 			private double angle;
-		@Attribute(name="Collision")
+		@Attribute(name="Collision",required=false)
 			private String collision;
-		@Attribute(name="Ground")
+		@Attribute(name="Ground",required=false)
 			private int ground;
 			
 		@Element(name="BeaconSensor",required=false)
@@ -159,9 +170,11 @@ class Measures
 		
 		class Message
 		{
-			@Attribute(name="From")
+			Message(){}
+			
+			@Attribute(name="From",required=false)
 				private int id;
-			@Text(data=true)
+			@Text(data=true,required=false)
 				private String data;
 			
 			public String getMessageData(){
@@ -174,9 +187,11 @@ class Measures
 		
 		class Beacon
 		{
-			@Attribute(name="Id")
+			Beacon(){}
+			
+			@Attribute(name="Id",required=false)
 				private int id;
-			@Attribute(name="Value")
+			@Attribute(name="Value",required=false)
 				private double beaconValue;
 			
 			public int getBeaconId(){
@@ -189,9 +204,11 @@ class Measures
 		
 		class IRSensor
 		{
-			@Attribute(name="Id")
+			IRSensor(){}
+			
+			@Attribute(name="Id",required=false)
 				private int sensorId;
-			@Attribute(name="Value")
+			@Attribute(name="Value",required=false)
 				private double sensorValue;
 				
 			public int getSensorId(){
@@ -204,9 +221,11 @@ class Measures
 		
 		class GPS
 		{
-			@Attribute(name="X")
+			GPS(){}
+			
+			@Attribute(name="X",required=false)
 				private double xVal;
-			@Attribute(name="Y")
+			@Attribute(name="Y",required=false)
 				private double yVal;
 				
 			public double getX(){
@@ -221,6 +240,7 @@ class Measures
 		public Beacon getBeacon(){
 			return beacon;
 		}
+		
 		
 		public GPS getGPS(){
 			return gps;
@@ -238,4 +258,9 @@ class Measures
 			return sensorList;
 		}
 	}
+	
+	public int getTime(){
+			return time;
+	}
+
 }
