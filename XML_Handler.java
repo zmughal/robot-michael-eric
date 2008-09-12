@@ -1,6 +1,7 @@
 import org.simpleframework.xml.*;
 import org.simpleframework.xml.load.*;
 
+import java.util.List;
 
 @Root(name="Reply",strict=false)
 class RegisterReply
@@ -123,8 +124,18 @@ class Measures
 		
 	@Element(name="Sensors")
 		private Sensors sensors;
-		
 	
+	@Element(name="Leds",required = false)
+		private String ledElement;
+	@Attribute(name="EndLed",required=false)
+		private String endLed;
+	@Element(name="Buttons",required=false)
+		private String buttonElement;
+	@Attribute(name="Start",required=false)
+		private String buttonStart;
+	@Attribute(name="Stop",required=false)
+		private String buttonStop;
+		
 	class Sensors
 	{
 		@Attribute(name="Compass",required=false)
@@ -137,6 +148,94 @@ class Measures
 		@Element(name="BeaconSensor",required=false)
 			private Beacon beacon;
 			
-		@ElementList()
+		@ElementList(entry="IRSensor",required=false,inline=true)
+			List<IRSensor> sensorList;
+		
+		@Element(name="Message",required=false)
+			private Message msg;
+		
+		@Element(name="GPS",required=false)
+			private GPS gps;
+		
+		class Message
+		{
+			@Attribute(name="From")
+				private int id;
+			@Text(data=true)
+				private String data;
+			
+			public String getMessageData(){
+				return data;
+			}
+			public int getMessageId(){
+				return id;
+			}
+		}
+		
+		class Beacon
+		{
+			@Attribute(name="Id")
+				private int id;
+			@Attribute(name="Value")
+				private double beaconValue;
+			
+			public int getBeaconId(){
+				return id;
+			}
+			public double getBeaconValue(){
+				return beaconValue;
+			}
+		}
+		
+		class IRSensor
+		{
+			@Attribute(name="Id")
+				private int sensorId;
+			@Attribute(name="Value")
+				private double sensorValue;
+				
+			public int getSensorId(){
+				return sensorId;
+			}
+			public double getSensorValue(){
+				return sensorValue;
+			}
+		}
+		
+		class GPS
+		{
+			@Attribute(name="X")
+				private double xVal;
+			@Attribute(name="Y")
+				private double yVal;
+				
+			public double getX(){
+				return xVal;
+			}	
+			public double getY(){
+				return yVal;
+			}
+				
+		}
+		
+		public Beacon getBeacon(){
+			return beacon;
+		}
+		
+		public GPS getGPS(){
+			return gps;
+		}
+		
+		public Message getMessage(){
+			return msg;
+		}
+		
+		public String getEndLed(){
+			return endLed;
+		}
+		
+		public List<IRSensor> getSensorList(){
+			return sensorList;
+		}
 	}
 }
