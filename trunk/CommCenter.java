@@ -9,6 +9,7 @@ import java.net.InetAddress;
 
 import java.io.IOException;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.BufferedInputStream;
 
 import java.util.Scanner;
@@ -35,7 +36,40 @@ class CommCenter extends Thread
 		
 		center.registerRobot(1);
 	}
-	 
+	
+	public Measures receive()
+	{
+	    byte[] bufread = new byte[4096];
+	    DatagramPacket packet = new DatagramPacket(bufread, bufread.length);
+		try
+		{
+			Serializer ser = new Persister();
+			socket.receive(packet);
+			
+			BufferedInputStream inStream = new BufferedInputStream(new ByteArrayInputStream(packet.getData()));
+			
+			Measures m = new Measures();
+			ser.read(m,inStream);
+			return m;
+		}
+		catch(Exception exc){exc.printStackTrace();}
+		return null;
+	}
+	
+	public void send(SendActions act)
+	{
+		Serializer ser = new Persister();
+		try
+		{
+			ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+			ser.write(act,outStream);
+			byte[] outArr = outStream.toByteArray();
+			DatagramPacket pack = new DatagramPacket(outArr,outArr.length,addr,port);
+			
+			socket.send(pack);
+		}
+		catch(Exception exc){}
+	} 
 	
 	CommCenter(String hostname,String robotName,int port)
 	{

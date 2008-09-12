@@ -17,7 +17,7 @@ public class Bot
 	
 	public Bot()
 	{
-		comm = new CommCenter("localhost","Bob");
+		comm = new CommCenter("localhost","Bob",6000);
 		comm.registerRobot(1);
 		
 		maze = new Maze(this);
