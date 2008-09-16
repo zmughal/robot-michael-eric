@@ -14,11 +14,19 @@ public class Bot
 	private CommCenter comm;
 	private Maze maze;
 	private MazeViewer mv;
+	private RegisterReply rr;
 	
 	public Bot()
 	{
+<<<<<<< .mine
+		comm = new CommCenter("localhost","Bob",6000);
+		rr = comm.registerRobot(1);
+=======
 		comm = new CommCenter("localhost","Bob",6000);
 		comm.registerRobot(1);
+>>>>>>> .r35
+		
+		out.println(rr.getStatus());
 		
 		maze = new Maze(this);
 		maze.loadMap("testmap.rtss");
