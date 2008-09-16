@@ -33,7 +33,7 @@ class MazeViewer extends JFrame
 			g.setColor(Color.GREEN);
 			g.fillRect(0,0,1160,580);
 			g.setColor(Color.BLACK);
-			for(Point p : maze.getMaze())
+			for(NoisyPoint p : maze.getMaze())
 				g.fillRect(p.x*2,p.y*2,2,2);
 		}
 	}
