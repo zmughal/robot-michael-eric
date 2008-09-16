@@ -1,14 +1,13 @@
 import java.util.ArrayList;
 import java.lang.Thread;
-import java.awt.Point;
 
 class Pathfinder extends Thread
 {
 	private double direction;
 	//	Direction will be a double representing the direction to the next point in the path
 	
-	private Point goal;
-	private ArrayList<Point> path;
+	private NoisyPoint goal;
+	private ArrayList<NoisyPoint> path;
 	private Maze maze;
 	private Bot bot;
 	
@@ -29,7 +28,7 @@ class Pathfinder extends Thread
 	
 	public void setGoal(int x, int y)
 	{
-		goal = new Point(x,y);
+		goal = new NoisyPoint(x,y);
 	}
 	
 	public void run()

@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.HashSet;
-import java.awt.Point;
 import java.io.File;
 
 class Maze
@@ -17,7 +16,7 @@ class Maze
 		  'B': a possible beacon location
 	*/
 	
-	private HashSet<Point> map;
+	private HashSet<NoisyPoint> map;
 	
 	public Maze(Bot bot)
 	{
@@ -25,7 +24,7 @@ class Maze
 		roff = 0;
 		coff = 0;
 //		map = new char[280][560];
-		map = new HashSet<Point>();
+		map = new HashSet<NoisyPoint>();
 	}
 	
 //	public synchronized char[][] getMap()
@@ -33,19 +32,19 @@ class Maze
 //		return map;
 //	}
 	
-	public synchronized HashSet<Point> getMap()
+	public synchronized HashSet<NoisyPoint> getMap()
 	{
 		return map;
 	}
 	
 	public void add(int r, int c)
 	{
-		map.add(new Point(r,c));
+		map.add(new NoisyPoint(r,c));
 	}
 	
 	public boolean contains(int r, int c)
 	{
-		return map.contains(new Point(r,c));
+		return map.contains(new NoisyPoint(r,c));
 	}
 	
 	public void setOffset(int r, int c)
@@ -53,15 +52,15 @@ class Maze
 		roff = r;
 		coff = c;
 		
-		HashSet<Point> temp = new HashSet<Point>();
+		HashSet<NoisyPoint> temp = new HashSet<NoisyPoint>();
 		
-		for(Point p : map)
-			temp.add(new Point(p.x+coff,p.y+roff));
+		for(NoisyPoint p : map)
+			temp.add(new NoisyPoint(p.x+coff,p.y+roff));
 		
 		map = temp;
 	}
 	
-	public HashSet<Point> getMaze()
+	public HashSet<NoisyPoint> getMaze()
 	{
 		return map;
 	}
@@ -71,11 +70,11 @@ class Maze
 		try
 		{
 			Scanner scan = new Scanner(new File(file));
-			HashSet<Point> temp = new HashSet<Point>();
+			HashSet<NoisyPoint> temp = new HashSet<NoisyPoint>();
 			
 			while(scan.hasNextLine())
 			{
-				temp.add(new Point(scan.nextInt(),scan.nextInt()));
+				temp.add(new NoisyPoint(scan.nextInt(),scan.nextInt()));
 			}
 			
 			map = temp;
