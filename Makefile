@@ -1,4 +1,4 @@
 all:
-	javac $(wildcard *.java)
+	javac *.java
 clean:
-	rm $(wildcard *.class)
+	rm -rf *.class
