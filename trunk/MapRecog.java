@@ -76,6 +76,12 @@ class MapRecog
 			}
 		}
 	}
+	
+	/* TODO */
+	/* skeleton */
+	private void bounce()
+	{
+	}
 
 	private double getDistance(NoisyPoint one, NoisyPoint two)
 	{
