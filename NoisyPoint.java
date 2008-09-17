@@ -2,7 +2,8 @@ class NoisyPoint
 {
 	public int x;
 	public int y;
-	public static int noise;
+	/* XXX Temp value */
+	public static int noise=0.1;
 	
 	public NoisyPoint(int x, int y)
 	{
