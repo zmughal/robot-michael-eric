@@ -1,0 +1,16 @@
+#summary What design ideas need to be thought about.
+#labels Phase-Design
+
+= Introduction =
+
+
+
+
+= Details =
+
+* Map representation:
+  - x,y coordinates
+  - vectors
+* Noise reduction
+
+Further research can be initiated by examining the distributed client.
