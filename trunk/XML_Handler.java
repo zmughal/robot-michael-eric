@@ -119,9 +119,9 @@ class SendActions
 class Measures
 {
 	Measures()
-		{
-			sensors = new Sensors();
-		}
+	{
+		sensors = new Sensors();
+	}
 	
 	@Attribute(name="Time",required=false)
 		private int time;		
